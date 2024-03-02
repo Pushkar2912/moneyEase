@@ -2,19 +2,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { PATHS } from "./utils/constants"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
-import Register from "./pages/Register"
-import Navbar from "./components/common/Navbar"
+import SignUp from "./pages/SignUp"
+import Layout from "./components/common/Layout"
+
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
+    
       <Routes>
-        <Route path={PATHS.HOME} element={<Home />} />
         <Route path={PATHS.LOGIN} element={<Login />} />
-        <Route path={PATHS.HOME} element={<Register />} />
+        <Route path={PATHS.SIGNUP} element={<SignUp />} />
+        <Route path={PATHS.HOME} element={<Layout/>} >
+          <Route index element={<Home />} />
+        </Route>
       </Routes>
-    </BrowserRouter>
+    
   )
 }
 export default App

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app-grid{
+    display: grid;
+    grid-template-columns: 240px 1fr;
+}
+
+.modal-overlay-container{
+     background: rgba(0, 0, 0, 0.07);
+     position: fixed;
+     height: 100%;
+     width: 100%;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+}
+
+.modal-container{
+    background: white;
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+.transactions-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

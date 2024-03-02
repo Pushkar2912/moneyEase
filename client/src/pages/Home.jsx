@@ -1,13 +1,12 @@
-import Todos from "../components/todos/Todos"
-
+import Statistics from "../components/transaction/Statistics"
+import Transactions from "../components/transaction/Transactions"
 
 const Home = () => {
+
     return (
-        <div className="p-5">
-            <div className="text-lg py-3 border-b mb-3">
-                Today's To Do's
-            </div>
-            <Todos />
+        <div className="bg-gray-100 flex flex-col p-4 gap-4">
+            <Statistics />
+            <Transactions /> 
         </div>
     )
 }
