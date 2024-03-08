@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TYPES } from '../../utils/types';
 import { updateTransaction } from '../../api/transactions';
 import { updateTransaction as updateTransactionFn } from '../../slices/transactions';
+import { Field } from './TransactionForm';
 
 
 
-const TransactionUpdateForm = ({transaction}) => {
+const TransactionUpdateForm = ({ transaction, handleCloseModal }) => {
 
     const categories = useSelector((state) => state.category.categories)
     const dispatch = useDispatch();
@@ -39,43 +40,54 @@ const TransactionUpdateForm = ({transaction}) => {
             type,
             categoryId
         }
-        const {data} = await updateTransaction(transaction.id,values);
-        console.log("Data",data);
+        const { data } = await updateTransaction(transaction.id, values);
+        console.log("Data", data);
         dispatch(updateTransactionFn(data))
+        handleCloseModal();
     }
 
     return (
-        <form onSubmit={handleSubmit} className='transaction-container-frm flex flex-col justify-center items-center gap-2'>
-            <label className='w-1/2 text-sm'>Name</label>
-            <input value={name} onChange={handleNameChange} className='w-1/2 p-2  border border-gray-300 rounded-md' type="text" placeholder='Eg: Salary' />
-            <label className='w-1/2 text-sm'>Amount</label>
-            <input value={amount} onChange={handleAmountChange} className='w-1/2 p-2  border border-gray-300 rounded-md' type="number" placeholder='Eg: 20000' />
-            <label className='w-1/2 text-sm'>Types</label>
-            <select value={type} onChange={handleTypeChange} className='w-1/2 p-2  border border-gray-300 rounded-md'>
-                {
-                    TYPES.map((type) => {
-                        return (
-                            
+        <form onSubmit={handleSubmit} className='transaction-container-frm flex flex-col justify-center gap-2'>
+
+            <Field>
+                <label className=' text-sm'>Name</label>
+                <input value={name} onChange={handleNameChange} className=' p-2  border border-gray-300 rounded-md' type="text" placeholder='Eg: Salary' />
+            </Field>
+            <Field>
+                <label className=' text-sm'>Amount</label>
+                <input value={amount} onChange={handleAmountChange} className=' p-2  border border-gray-300 rounded-md' type="number" placeholder='Eg: 20000' />
+            </Field>
+            <Field>
+                <label className=' text-sm'>Types</label>
+                <select value={type} onChange={handleTypeChange} className=' p-2  border border-gray-300 rounded-md'>
+                    {
+                        TYPES.map((type) => {
+                            return (
+
                                 <option value={type.value} key={type.value}>{type.name}</option>
-                            
-                        )
-                    })
-                }
-            </select>
-            <label className='w-1/2 text-sm'>Categories</label>
-            <select value={categoryId} onChange={handleCategoryIdChange} className='w-1/2 p-2  border border-gray-300 rounded-md'>
-                {
-                    categories.map((category) => {
-                        return (
-                            
+
+                            )
+                        })
+                    }
+                </select>
+            </Field>
+
+            <Field>
+                <label className=' text-sm'>Categories</label>
+                <select value={categoryId} onChange={handleCategoryIdChange} className=' p-2  border border-gray-300 rounded-md'>
+                    {
+                        categories.map((category) => {
+                            return (
+
                                 <option value={category.id} key={category.name}>{category.name}</option>
-                        )
-                    })
-                }
-            </select>
-            <button className='bg-blue-500 p-2 text-white font-semibold rounded-md w-1/2'>Submit</button>
+                            )
+                        })
+                    }
+                </select>
+            </Field>
+            <button className='bg-blue-500 p-2 text-white font-semibold rounded-md mt-4'>Submit</button>
         </form>
-        
+
     )
 }
 

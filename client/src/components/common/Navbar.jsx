@@ -8,7 +8,7 @@ const Navbar = () => {
     const { user, handleLogout } = useContext(AuthContext);
     
     return (
-        <div className="home-nav border-b flex justify-between items-center h-15">
+        <div className="home-nav border-b flex justify-between items-center h-[60px]">
                     <div className="nav-left flex items-center border-r gap-2 w-[240px] p-2">
                         <Avatar name={user.name} />
                         <div className="nav-name">
@@ -19,7 +19,7 @@ const Navbar = () => {
                         middle
                     </div> */}
                     <div className="nav-right p-2">
-                        <button onClick={handleLogout} className="bg-blue-500 text-sm font-semibold text-white p-2 rounded-md hover:bg-blue-600 ">Logout</button>
+                        <button onClick={handleLogout} className="font-semibold bg-red-200 text-red-500 text-sm p-2 px-4 rounded-md hover:bg-red-300 ">Logout</button>
                     </div>
                 </div>
     )

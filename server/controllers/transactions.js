@@ -5,8 +5,12 @@ exports.getTransactions = async (req, res) => {
         const transactions = await db.transaction.findMany({
             where: {
                 userId: req.user.id
+            },
+            include:{
+                Category: true
             }
         })
+        
         return res.json({
             transactions
         })
@@ -89,6 +93,31 @@ exports.deleteTransaction = async (req, res) =>{
         return res.json({
             message:"Transaction deleted sucessfully",
             transcation
+        })
+    } catch (error) {
+        return res.json({
+            message: error.message
+        })
+    }
+}
+
+exports.isCheckedUpdate = async(req, res) => {
+    const id = req.params.id
+    const { isChecked: checked, ...transactionWithOutChecked } = req.body
+    try {
+        const transaction = db.transaction.update({
+            where: {
+                id: id
+            },
+            data: {
+                transactionWithOutChecked,
+                isChecked: checked
+            }
+
+        })
+        return res.json({
+            message: "Transaction Checked updated successfully",
+            transaction
         })
     } catch (error) {
         return res.json({

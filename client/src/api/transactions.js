@@ -9,4 +9,5 @@ export const createTransaction = async(data) => await api.post(`/${prefix}`, dat
 
 export const updateTransaction = async(id, data) => await api.put(`/${prefix}/${id}`, data)
 
+
 export const deleteTransaction = async(id) => await api.delete(`/${prefix}/${id}`);

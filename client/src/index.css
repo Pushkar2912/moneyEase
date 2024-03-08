@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --dashboard-height: calc(100vh-60px);
+}
 .app-grid{
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -27,7 +30,30 @@
     position: fixed;
 }
 
+.dashboard-container{
+
+    max-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+    
+}
 .transactions-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    max-height: calc(100vh - 320px);
+    
+}
+
+.transactions-container{
+    max-height: calc(100vh - 100px);
+}
+.graphs-container{
+    max-height: calc(100vh - 100px);
+}
+
+.all-transactions-grid{
+    max-height: calc(100vh - 80px);
+}
+
+.active{
+    color: dodgerblue;
+    
 }

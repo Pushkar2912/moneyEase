@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Transaction from './Transaction'
 
 
-const Transactions = () => {
+const Transactions = ({fullHeight}) => {
 
     const transactions = useSelector((state) => state.transaction.transactions);
     
@@ -21,7 +21,7 @@ const Transactions = () => {
     }
 
     return (
-        <div className='flex-1 bg-white rounded-md'>
+        <div className={`bg-white rounded-md p-2 flex flex-col ${fullHeight && "h-full"}`}>
 
             <div className="flex items-center justify-between">
                 <h1 className="text-lg text-slate-800 font-semibold">Transactions</h1>
@@ -39,8 +39,8 @@ const Transactions = () => {
                     <TransactionForm />
                 </Modal>
             </div>
-            <div className="border-t my-5"></div>
-            <div className='transactions-grid'>
+            <div className="border-t my-[10px]"></div>
+            <div className={`${fullHeight ? "all-transactions-grid" :"transactions-grid"} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 overflow-auto`}>
                 {
                     transactions.map((transaction) => {
                         return (

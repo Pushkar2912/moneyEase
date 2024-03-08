@@ -23,19 +23,20 @@ model User {
 }
 
 model Transaction {
-  id         String    @id @default(uuid())
+  id         String   @id @default(uuid())
   name       String
   amount     Int
   type       String
-  User       User?     @relation(fields: [userId], references: [id])
+  User       User?    @relation(fields: [userId], references: [id])
   userId     String?
   Category   Category @relation(fields: [categoryId], references: [id])
   categoryId String
+  createdAt  DateTime @default(now())
 }
 
 model Category {
   id           String        @id @default(uuid())
-  name         String        
+  name         String
   color        String
   User         User?         @relation(fields: [userId], references: [id])
   userId       String?

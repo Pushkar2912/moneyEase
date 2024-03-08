@@ -5,8 +5,6 @@ import { createtransaction as createTransactionFn } from '../../slices/transacti
 import { createTransaction } from '../../api/transactions';
 import { TbArrowRight } from 'react-icons/tb'
 
-
-
 const TransactionForm = () => {
 
     const categories = useSelector((state) => state.category.categories)
@@ -43,6 +41,9 @@ const TransactionForm = () => {
         const { data } = await createTransaction(values);
         console.log("Data", data);
         dispatch(createTransactionFn(data))
+        setName('');
+        setAmount(0);
+        
     }
 
     return (
@@ -90,7 +91,7 @@ const TransactionForm = () => {
 
 export default TransactionForm
 
-const Field = ({ children }) => {
+export const Field = ({ children }) => {
     return (
         <div className="flex flex-col gap-1">
             {children}

@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 
 const Modal = ({ children, modalTitle, openModal, handleOpenModal, handleCloseModal, trigger, width }) => {
     return (
-        <div>
+        <>
             {openModal && (
                 <>
                     <div className='modal-overlay-container' onClick={handleCloseModal}>
@@ -24,10 +24,10 @@ const Modal = ({ children, modalTitle, openModal, handleOpenModal, handleCloseMo
 
 
             )}
-            <div className='modal-show-container p-2 flex justify-end'>
+            
                 {trigger}
-            </div>
-        </div>
+            
+        </>
     )
 }
 
