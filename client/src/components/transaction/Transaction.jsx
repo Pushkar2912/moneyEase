@@ -27,12 +27,13 @@ const Transaction = ({ transaction }) => {
     }
 
     const handleCheckChange = (e) => {
+        e.stopPropagation();
         dispatch(checkTransaction(transaction.id))
     }
 
     return (
         <>
-            <div className='border border-gray-300  rounded-md flex flex-col gap-2 p-3 group'>
+            <div className='border border-gray-300  rounded-md flex flex-col gap-2 p-3 group' onClick={handleOpenUpdateTransactionModal}>
                 <div className='transaction-container-upper flex items-center gap-4'>
                     <Avatar name={category?.name} />
                     <div className=' flex flex-col'>
@@ -46,9 +47,9 @@ const Transaction = ({ transaction }) => {
 
                     
                     
-                        {/* <div className={`flex-1 justify-end items-start h-full ${checkCard.length === 0 ? "hidden group-hover:flex" : "flex"}`}>
+                        <div onClick={(e) => e.stopPropagation()}className={`flex-1 justify-end items-start h-full ${checkCard.length === 0 ? "hidden group-hover:flex" : "flex"}`}>
                             <input value={checked} onChange={handleCheckChange} type="checkbox" />
-                        </div> */}
+                        </div>
                     
                 </div>
                 <div className="border-b"></div>
